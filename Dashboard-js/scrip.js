@@ -2,13 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const { fetchData } = require('./script.js'); // Importa a função para buscar dados do banco de dados
 
-const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
-});
 // Configura o CORS para permitir solicitações de qualquer origem
 app.use(cors());
 
@@ -27,5 +23,5 @@ app.get('/dados', async (req, res) => {
 
 // Inicia o servidor
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+  console.log(`${port}`);
 });

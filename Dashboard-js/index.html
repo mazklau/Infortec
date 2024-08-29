@@ -50,7 +50,7 @@
     // Função para buscar dados do servidor e atualizar a tabela
     async function carregarDados() {
       try {
-        const response = await fetch('http://localhost:3000/dados'); // URL do servidor Express
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/dados';
         if (!response.ok) {
           throw new Error(`Erro HTTP! status: ${response.status}`);
         }
