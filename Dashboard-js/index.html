@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD com JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img class="logo" src="_images/logo.png" alt="logo">
+        <nav>
+            <ul class="nav__links">
+                <li><a href="#" >Client</a></li>
+                <li><a href="#">Update</a></li>
+                <li><a href="#">Delet</a></li>
+                <li><a href="#">List</a></li>
+                <br>
+                <li><a href="#">Sair</a></li>
+            </ul>
+        </nav>
+    
+    </header>
+    <div class="container">
+       <br>
+        <!-- Tabela para exibir usuários -->
+        <table id="TableBody" border="1" >
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>senha</th>
+                    <th>Telefone</th>
+                    
+                </tr>
+            </thead>
+            <tbody  id="tabela">
+                
+                <!-- As linhas serão adicionadas aqui -->
+            </tbody>
+        </table>
+        <br>
+    </div>
+    <script src="scrip.js">
+      
+    </script>
+ <script>
+    // Função para buscar dados do servidor e atualizar a tabela
+    async function carregarDados() {
+      try {
+        const response = await fetch('http://localhost:3000/dados'); // URL do servidor Express
+        if (!response.ok) {
+          throw new Error(`Erro HTTP! status: ${response.status}`);
+        }
+
+        const rows = await response.json(); // Recebe os dados como JSON
+        console.log('Dados recebidos do servidor:', rows); // Log dos dados recebidos
+
+        const tabela = document.getElementById('tabela'); // Seleciona o tbody da tabela
+
+        // Limpa a tabela antes de adicionar novas linhas
+        tabela.innerHTML = '';
+
+        // Itera sobre cada linha de dados e adiciona na tabela
+        rows.forEach(row => {
+          const tr = document.createElement('tr'); // Cria uma nova linha de tabela
+
+          tr.innerHTML = `
+            <td>${row.id}</td>
+            <td>${row.nome}</td>
+            <td>${row.email}</td>
+            <td>${row.password}</td>
+            <td>${row.telefone}</td>
+          `; // Preenche a linha com os dados recebidos
+
+          tabela.appendChild(tr); // Adiciona a nova linha ao tbody
+        });
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+      }
+    }
+
+    // Chama a função para carregar os dados ao carregar a página
+    window.onload = carregarDados;
+  </script>
+  
+</body>
+</html>

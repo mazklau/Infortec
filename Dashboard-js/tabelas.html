@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerar Tabela com JavaScript</title>
+</head>
+<body>
+    <table id="myTable" border="1">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Senha</th>
+                <th>Telefone</th>
+                <th>Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As linhas serão inseridas aqui dinamicamente -->
+        </tbody>
+    </table>
+
+    <script>
+        // Exemplo de dados
+        const rows = [
+            { email: "exemplo1@gmail.com", senha: "senha1", telefone: "123456789", nome: "João" },
+            { email: "exemplo2@gmail.com", senha: "senha2", telefone: "987654321", nome: "Maria" },
+            // Adicione mais objetos conforme necessário
+        ];
+
+        // Referência ao corpo da tabela
+        const tbody = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+
+        // Itera sobre cada objeto em rows
+        rows.forEach(function(row) {
+            // Cria uma nova linha na tabela
+            const newRow = tbody.insertRow();
+
+            // Cria uma célula para cada propriedade do objeto
+            const cellEmail = newRow.insertCell();
+            cellEmail.textContent = row.email;
+
+            const cellSenha = newRow.insertCell();
+            cellSenha.textContent = row.senha;
+
+            const cellTelefone = newRow.insertCell();
+            cellTelefone.textContent = row.telefone;
+
+            const cellNome = newRow.insertCell();
+            cellNome.textContent = row.nome;
+        });
+    </script>
+</body>
+</html>
