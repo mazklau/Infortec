@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { fetchData } = require('./script.js'); // Importa a função para buscar dados do banco de dados
+const { fetchData } = require('./Api.js'); // Importa a função para buscar dados do banco de dados
 
 const app = express();
 const port = process.env.PORT || 3000;
