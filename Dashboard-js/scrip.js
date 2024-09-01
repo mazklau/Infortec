@@ -3,10 +3,12 @@ const cors = require('cors');
 const { fetchData } = require('./Api.js'); // Importa a função para buscar dados do banco de dados
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
-// Configura o CORS para permitir solicitações de qualquer origem
-app.use(cors());
+// Configura o CORS para permitir solicitações do domínio específico
+app.use(cors({
+  origin: 'https://localhost-psi.vercel.app'
+}));
 
 // Endpoint para obter dados
 app.get('/dados', async (req, res) => {
@@ -23,5 +25,5 @@ app.get('/dados', async (req, res) => {
 
 // Inicia o servidor
 app.listen(port, () => {
-  console.log(`${port}`);
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });
